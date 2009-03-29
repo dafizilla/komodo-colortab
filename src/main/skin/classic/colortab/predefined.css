@@ -1,0 +1,29 @@
+.predefined01 { color: #000 !important; background-color: #5fc3cf !important; }
+.predefined02 { color: #000 !important; background-color: #9cc1b6 !important; }
+.predefined03 { color: #000 !important; background-color: #a5c2d7 !important; }
+.predefined04 { color: #000 !important; background-color: #b3a6be !important; }
+.predefined05 { color: #000 !important; background-color: #b5e99d !important; }
+.predefined06 { color: #000 !important; background-color: #bca8e1 !important; }
+.predefined07 { color: #000 !important; background-color: #becea1 !important; }
+.predefined08 { color: #000 !important; background-color: #c18383 !important; }
+.predefined09 { color: #000 !important; background-color: #c5d4f2 !important; }
+.predefined10 { color: #000 !important; background-color: #cacad5 !important; }
+.predefined11 { color: #000 !important; background-color: #d9adc2 !important; }
+.predefined12 { color: #000 !important; background-color: #ead6a3 !important; }
+.predefined13 { color: #000 !important; background-color: #f0a0a1 !important; }
+.predefined14 { color: #000 !important; background-color: #f6fa7d !important; }
+.predefined15 { color: #000 !important; background-color: #f7b886 !important; }
+.predefined16 { color: #000 !important; background-color: #ffdc78 !important; }
+
+.predefined-menuitem {
+    -moz-appearance:none !important;
+    border: solid 1px #fff;
+}
+.predefined-menuitem:hover {
+    border: solid 1px #000;
+}
+
+.pattern-list {
+    -moz-appearance:none !important; 
+    border: solid 1px #000;
+}

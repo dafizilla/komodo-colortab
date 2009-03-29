@@ -1,0 +1,4 @@
+<!ENTITY colortab.label "Color Tab">
+<!ENTITY current.defined.color.patterns.label "Current Defined Color Patterns">
+<!ENTITY add.pattern.tooltiptext "Add Pattern">
+<!ENTITY delete.pattern.tooltiptext "Delete Pattern">

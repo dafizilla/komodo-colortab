@@ -1,0 +1,9 @@
+.button-add {
+  min-width: 0px;
+  list-style-image: url("chrome://colortab/skin/images/add.png");
+}
+
+.button-delete {
+  min-width: 0px;
+  list-style-image: url("chrome://colortab/skin/images/delete.png");
+}

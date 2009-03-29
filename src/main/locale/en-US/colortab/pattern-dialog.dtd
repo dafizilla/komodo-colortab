@@ -1,0 +1,12 @@
+<!ENTITY pattern.dialog.title "Color Pattern">
+<!ENTITY color.style.caption "Color and Style">
+<!ENTITY predefined.color.schemes.label "Predefined Color Schemes">
+<!ENTITY sample-text "Sample Text">
+<!ENTITY fore.color.label "Fore">
+<!ENTITY back.color.label "Back">
+
+<!ENTITY css.block.label "CSS style block">
+
+<!ENTITY file.pattern.caption "File pattern">
+<!ENTITY file.pattern.label "Multiple patterns must be separated with ';'">
+

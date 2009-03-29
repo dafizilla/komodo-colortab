@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE overlay SYSTEM "chrome://colortab/locale/colortab.dtd" >
+
+<overlay id="colortabOverlay"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+  <script type="application/x-javascript"
+          src="chrome://colortab/content/common.js" />
+  <script type="application/x-javascript"
+          src="chrome://colortab/content/stringUtils.js" />
+  <script type="application/x-javascript"
+          src="chrome://colortab/content/tabUtils.js" />
+  <script type="application/x-javascript"
+          src="chrome://colortab/content/colortabOverlay.js" />
+
+</overlay>
+   

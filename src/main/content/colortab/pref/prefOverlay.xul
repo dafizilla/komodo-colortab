@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin" type="text/css"?>
+
+<!DOCTYPE overlay SYSTEM "chrome://colortab/locale/pref.dtd" >
+
+<overlay id="colortabPrefOverlay"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+    <treechildren id="panelChildren">
+        <treeitem id="uiColortabMain">
+            <treerow>
+                <treecell class="treecell-indent"
+                            url="chrome://colortab/content/pref/pref-colortab-patterns.xul"
+                            label="&colortab.label;"/>
+            </treerow>
+        </treeitem>
+    </treechildren>
+
+</overlay>

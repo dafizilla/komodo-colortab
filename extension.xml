@@ -1,0 +1,79 @@
+<!DOCTYPE extension [
+<!ENTITY extension.version "1.0">
+]>
+
+<extension name="colortab">
+    <title-name>Dafizilla ColorTab</title-name>
+    <uuid>colortab@dafizilla.sourceforge.net</uuid>
+    <version>&extension.version;</version>
+    <description>Color tab view based on file type</description>
+    <homepage>http://dafizilla.sourceforge.net/colortab</homepage>
+    <updateurl>http://dafizilla.sourceforge.net/colortab/update.php?item_id=%ITEM_ID%&amp;item_version=%ITEM_VERSION%&amp;app_id=%APP_ID%&amp;app_version=%APP_VERSION%</updateurl>
+    <iconurl-path>skin/appicon.png</iconurl-path>
+
+    <!--<optionurl-path>/content/settings/settings.xul</optionurl-path>-->
+
+    <author>Davide Ficano</author>
+
+<!--    <exclude-installjs>false</exclude-installjs>-->
+<!--#exclude.installrdf=true-->
+<!--#exclude.chromemanifest=true-->
+<!--#exclude.prefsjs=true-->
+<!--#exclude.updaterdf=true-->
+<!--#exclude.contentrdf=true-->
+
+    <!-- Point to directory containing content, locales and skins. -->
+    <!-- If present must start with / (slash) -->
+    <chrome-extension-directory>/colortab</chrome-extension-directory>
+
+    <!-- Used by web site update.rdf -->
+    <updateLink>http://dafizilla.sourceforge.net/colortab/colortab-&extension.version;.xpi</updateLink>
+
+    <!-- used by install.js -->
+    <skins>
+        <skin>classic</skin>
+    </skins>
+    
+    <!-- used by install.js and build process to set the prefs.js.xsl destination file name -->
+    <prefs>
+        <pref>colortab.js</pref>
+    </prefs>
+
+    <locales>
+        <locale pos="1" code="en-US" />
+        <!--<locale pos="2" code="it-IT" />-->
+    </locales>
+
+    <styles>
+    </styles>
+
+    <overlays>
+        <overlay description="Editor" uri="chrome://komodo/content/komodo.xul" value="chrome://colortab/content/colortabOverlay.xul" />
+        <overlay description="Preferences" uri="chrome://komodo/content/pref/pref.xul" value="chrome://colortab/content/pref/prefOverlay.xul" />
+    </overlays>
+
+    <compatibility>
+        <application>
+            <description>Komodo IDE</description>
+            <id>{36E66FA0-F259-11D9-850E-000D935D3368}</id>
+            <minVersion>5.0</minVersion>
+            <maxVersion>5.*</maxVersion>
+        </application>
+        
+        <application>
+            <description>Komodo Edit</description>
+            <id>{b1042fb5-9e9c-11db-b107-000d935d3368}</id>
+            <minVersion>5.0</minVersion>
+            <maxVersion>5.*</maxVersion>
+        </application>
+    </compatibility>
+
+    <contributors>
+        <contributor></contributor>
+    </contributors>
+
+    <translators>
+        <translator></translator>
+    </translators>
+
+</extension>

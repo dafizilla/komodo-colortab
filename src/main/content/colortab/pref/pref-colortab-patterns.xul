@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin" type="text/css"?>
+<?xml-stylesheet href="chrome://komodo/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://komodo/skin/global/global.css" type="text/css"?>
+
+<!--<?xml-stylesheet href="chrome://komodo/skin/bindings/colorpicker.css" type="text/css"?>-->
+<?xml-stylesheet href="chrome://colortab/skin/colortab.css" type="text/css"?>
+<?xml-stylesheet href="chrome://colortab/skin/predefined.css" type="text/css"?>
+
+<!DOCTYPE window SYSTEM "chrome://colortab/locale/pref.dtd" >
+
+<window xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+    orient="vertical"
+    onload="colorTabOnLoad();">
+
+    <script type="application/x-javascript"
+            src="chrome://colortab/content/common.js" />
+    <script type="application/x-javascript"
+            src="chrome://colortab/content/stringUtils.js" />
+    <script type="application/x-javascript"
+            src="chrome://colortab/content/tabUtils.js" />
+    <script type="application/x-javascript"
+            src="chrome://colortab/content/pref/pref-colortab-patterns.js" />
+
+  <!--<groupbox orient="vertical">-->
+  <!--  <caption label="&color.pattern.label;"/>-->
+  <!---->
+  <!--  <vbox>-->
+  <!--    <hbox align="center">-->
+  <!--      <label value="&fore.color.label;"/>-->
+  <!--      <colorpicker id="fore-picker"-->
+  <!--                   palettename="scin-customize"-->
+  <!--                   type="button"-->
+  <!--                   width="20"-->
+  <!--                   height="20"-->
+  <!--                   onchange="setColour(this)"/>-->
+  <!--      <label value="&back.color.label;"/>-->
+  <!--      <colorpicker id="back-picker"-->
+  <!--                   palettename="scin-customize"-->
+  <!--                   type="button"-->
+  <!--                   width="20"-->
+  <!--                   height="20"-->
+  <!--                   onchange="setColour(this)"/>-->
+  <!---->
+  <!--      <button type="menu" label="&predefined.color.schemes.label;" id="color-scheme-list">-->
+  <!--        <menupopup id="color-scheme-menupopup">-->
+  <!--          <menuitem label="&sample-text;" id="predefined01" class="predefined01 predefined-menuitem" oncommand="updateSelectedColor(this)"/>-->
+  <!--          <menuitem label="&sample-text;" id="predefined02" class="predefined02 predefined-menuitem" oncommand="updateSelectedColor(this)"/>-->
+  <!--          <menuitem label="&sample-text;" id="predefined03" class="predefined03 predefined-menuitem" oncommand="updateSelectedColor(this)"/>-->
+  <!--          <menuitem label="&sample-text;" id="predefined04" class="predefined04 predefined-menuitem" oncommand="updateSelectedColor(this)"/>-->
+  <!--          <menuitem label="&sample-text;" id="predefined05" class="predefined05 predefined-menuitem" oncommand="updateSelectedColor(this)"/>-->
+  <!--          <menuitem label="&sample-text;" id="predefined06" class="predefined06 predefined-menuitem" oncommand="updateSelectedColor(this)"/>-->
+  <!--          <menuitem label="&sample-text;" id="predefined07" class="predefined07 predefined-menuitem" oncommand="updateSelectedColor(this)"/>-->
+  <!--          <menuitem label="&sample-text;" id="predefined08" class="predefined08 predefined-menuitem" oncommand="updateSelectedColor(this)"/>-->
+  <!--          <menuitem label="&sample-text;" id="predefined09" class="predefined09 predefined-menuitem" oncommand="updateSelectedColor(this)"/>-->
+  <!--          <menuitem label="&sample-text;" id="predefined10" class="predefined10 predefined-menuitem" oncommand="updateSelectedColor(this)"/>-->
+  <!--          <menuitem label="&sample-text;" id="predefined11" class="predefined11 predefined-menuitem" oncommand="updateSelectedColor(this)"/>-->
+  <!--          <menuitem label="&sample-text;" id="predefined12" class="predefined12 predefined-menuitem" oncommand="updateSelectedColor(this)"/>-->
+  <!--          <menuitem label="&sample-text;" id="predefined13" class="predefined13 predefined-menuitem" oncommand="updateSelectedColor(this)"/>-->
+  <!--          <menuitem label="&sample-text;" id="predefined14" class="predefined14 predefined-menuitem" oncommand="updateSelectedColor(this)"/>-->
+  <!--          <menuitem label="&sample-text;" id="predefined15" class="predefined15 predefined-menuitem" oncommand="updateSelectedColor(this)"/>-->
+  <!--          <menuitem label="&sample-text;" id="predefined16" class="predefined16 predefined-menuitem" oncommand="updateSelectedColor(this)"/>-->
+  <!--        </menupopup>-->
+  <!--      </button>-->
+  <!--  </hbox>-->
+  <!--    -->
+  <!--    <vbox>-->
+  <!--      <label value="&file.pattern.label;"/>-->
+  <!--      <hbox align="center">-->
+  <!--        <textbox id="file-pattern" flex="1" oninput="onInputFilePattern()"/>-->
+  <!--        <button id="file-pattern-add"-->
+  <!--            label="&add.label;"-->
+  <!--            accesskey="&add.accesskey;"-->
+  <!--            oncommand="addFilePattern()"-->
+  <!--            disabled="true"/>-->
+  <!--      </hbox>-->
+  <!--    </vbox>-->
+  <!---->
+  <!--  </vbox>-->
+  <!--</groupbox>-->
+  <!---->
+  <groupbox orient="vertical">
+    <caption label="&current.defined.color.patterns.label;"/>
+
+    <vbox>
+      <hbox>
+        <spacer flex="1"/>
+        <button class="button-add" tooltiptext="&add.pattern.tooltiptext;" oncommand="onAddPattern()"/>
+        <button class="button-delete" tooltiptext="&delete.pattern.tooltiptext;" oncommand="onDeletePattern()"/>
+      </hbox>
+  
+      <listbox id="pattern-list" ondblclick="onEditPattern()"/>
+    </vbox>
+  </groupbox>
+
+</window>
+
+

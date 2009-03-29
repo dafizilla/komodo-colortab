@@ -1,0 +1,5 @@
+1.0.0
+
+start page is colored, why?
+.manifest files default
+.txt, .dtd
