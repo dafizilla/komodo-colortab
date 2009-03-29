@@ -38,8 +38,10 @@
 var gColorTabOverlay = {
     onLoad : function() {
         try {
-            extensions.dafizilla.tabcolor.tabUtils.init();
+            var obs = extensions.dafizilla.tabcolor.commonUtils.getObserverService();
+            obs.addObserver(this, "colortab_pref_changed", false);
             this.addListeners();
+            extensions.dafizilla.tabcolor.tabUtils.init();
         } catch(e) {
             extensions.dafizilla.tabcolor.commonUtils.log(e);
         }
@@ -69,6 +71,18 @@ var gColorTabOverlay = {
         var currView = event.originalTarget;
 
         extensions.dafizilla.tabcolor.tabUtils.setViewTabStyle(currView);
+    },
+
+    observe : function(subject, topic, data) {
+        try {
+            switch (topic) {
+                case "colortab_pref_changed":
+                    extensions.dafizilla.tabcolor.tabUtils.prefChanged();
+                    break;
+            }
+        } catch (err) {
+            alert(topic + "--" + data + "\n" + err);
+        }
     }
 }
 

@@ -105,8 +105,22 @@ var gPatternColorDialog = {
     rebuildCssStyle : function() {
         var properties = extensions.dafizilla.tabcolor.tabUtils
             .getCssProperties(this.widgets.cssBlock.value);
-        properties['color'] = this.widgets.forePicker.color;
-        properties['background-color'] = this.widgets.backPicker.color;
+        properties["color"] = this.widgets.forePicker.color;
+        properties["background-color"] = this.widgets.backPicker.color;
+        
+        // add border if not present
+        var reBorder = /border.*/;
+        var addBorder = true;
+        for (var i in properties) {
+            if (reBorder.test(i)) {
+                addBorder = false;
+                break;
+            }
+        }
+        if (addBorder) {
+            properties["border"] = "1px solid #000 !important";
+        }
+
         this.widgets.cssBlock.value = extensions.dafizilla.tabcolor.tabUtils
             .cssTextFromProperties(properties);
     },

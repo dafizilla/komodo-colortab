@@ -39,16 +39,23 @@ var stylesInfo;
 var patternList;
 
 function OnPreferencePageOK(prefset) {
+    stylesInfo.enabled = widget.enableColorTab.checked;
     extensions.dafizilla.tabcolor.tabUtils.saveStylesInfo(stylesInfo);
+    var obs = extensions.dafizilla.tabcolor.commonUtils.getObserverService();
+    obs.notifyObservers(null, "colortab_pref_changed", "");
     return true;
 }
 
 function OnPreferencePageInitalize(prefset) {
     widget.patternList = document.getElementById("pattern-list");
+    widget.enableColorTab = document.getElementById("enable-color-tab");
 }
 
 function OnPreferencePageLoading(prefset) {
     stylesInfo = extensions.dafizilla.tabcolor.tabUtils.loadStylesInfo();
+    
+    widget.enableColorTab.checked = stylesInfo.enabled;
+    
     patternList = stylesInfo.patternList;
     for (var i in patternList) {
         var pattern = patternList[i];

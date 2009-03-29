@@ -102,9 +102,6 @@ extensions.dafizilla.tabcolor.tabUtils = {};
             return null;
         }
         var cssStyle = styleInfo.cssStyle;
-        if (!/border/.test(cssStyle)) {
-            cssStyle = "border:1px solid #000 !important; " + cssStyle;
-        }
         
         return "-moz-appearance:none !important; " + cssStyle;
     }
@@ -171,6 +168,35 @@ extensions.dafizilla.tabcolor.tabUtils = {};
         }
     }
     
+    this.prefChanged = function() {
+        this.init();
+        var views = ko.views.manager.topView.getDocumentViews(true);
+        if (_stylesInfo.enabled) {
+            // handle color changes
+            for (var v in views) {
+                var view = views[v];
+
+                if (view.document && view.document.file) {
+                    var style = getStyle(view.document.file.path);
+
+                    if (style) {
+                        var tab = view.parentNode._tab;
+                        tab.style.cssText = style;
+                    }
+                }
+            }
+        } else {
+            for (var v in views) {
+                var view = views[v];
+
+                if (view.document && view.document.file) {
+                    var tab = view.parentNode._tab;
+                    tab.style.cssText = "-moz-appearance: tab";
+                }
+            }
+        }
+    },
+
     this.init = function() {
         this.loadStylesInfo();
         createCachedInfo(_stylesInfo.patternList);
@@ -181,10 +207,8 @@ extensions.dafizilla.tabcolor.tabUtils = {};
             return;
         }
         if (view && view.document && view.document.file) {
-            var path = view.document.file.path;
+            var style = getStyle(view.document.file.path);
 
-            var style = getStyle(path);
-            commonUtils.log(style);
             if (style) {
                 var tab = view.parentNode._tab;
                 tab.style.cssText = style;
