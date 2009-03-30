@@ -132,7 +132,7 @@ extensions.dafizilla.tabcolor.tabUtils = {};
         }
 
         _stylesInfo = commonUtils.getJSON().parse(str);
-        
+
         return _stylesInfo;
     }
 
@@ -191,7 +191,7 @@ extensions.dafizilla.tabcolor.tabUtils = {};
 
                 if (view.document && view.document.file) {
                     var tab = view.parentNode._tab;
-                    tab.style.cssText = "-moz-appearance: tab";
+                    tab.style.cssText = "";
                 }
             }
         }
@@ -222,5 +222,35 @@ extensions.dafizilla.tabcolor.tabUtils = {};
                 tab.style.cssText = style;
             }
         }
+    }
+
+    this.setViewTabStyleByLanguage = function(view) {
+        if (view && view.document && view.document.language) {
+            var tab = view.parentNode._tab;
+            var style = this.getStyleByLanguage(view.document.language);
+            if (style) {
+                tab.style.cssText = style;
+            } else {
+                tab.style.cssText = "";
+            }
+        }
+    }
+
+    this.getStyleByLanguage = function(language) {
+        var langService = Components.classes["@activestate.com/koLanguageRegistryService;1"]
+                    .getService(Components.interfaces.koILanguageRegistryService);
+        var patterns = {};
+        var count = {};
+        langService.patternsFromLanguageName(language, patterns, count);
+        patterns = patterns.value;
+        count = count.value;
+
+        for (var i = 0; i < count; i++) {
+            var style = getStyle(patterns[i]);
+            if (style) {
+                return style;
+            }
+        }
+        return null;
     }
 }).apply(extensions.dafizilla.tabcolor.tabUtils);

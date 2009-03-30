@@ -57,20 +57,33 @@ var gColorTabOverlay = {
         this.handle_view_document_attached_setup = function(event) {
             self.onViewOpened(event);
         };
+        this.handle_current_view_language_changed_setup = function(event) {
+            self.onLanguageChanged(event);
+        };
 
         window.addEventListener('view_document_attached',
                                 this.handle_view_document_attached_setup, false);
+        window.addEventListener('current_view_language_changed',
+                                this.handle_current_view_language_changed_setup, false);
     },
 
     removeListeners : function() {
         window.removeEventListener('view_document_attached',
                                 this.handle_view_document_attached_setup, false);
+        window.removeEventListener('current_view_language_changed',
+                                this.handle_current_view_language_changed_setup, false);
     },
 
     onViewOpened : function(event) {
         var currView = event.originalTarget;
 
         extensions.dafizilla.tabcolor.tabUtils.setViewTabStyle(currView);
+    },
+
+    onLanguageChanged : function(event) {
+        var currView = event.originalTarget;
+
+        extensions.dafizilla.tabcolor.tabUtils.setViewTabStyleByLanguage(currView);
     },
 
     observe : function(subject, topic, data) {
