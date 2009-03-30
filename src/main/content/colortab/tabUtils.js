@@ -206,8 +206,16 @@ extensions.dafizilla.tabcolor.tabUtils = {};
         if (!_stylesInfo.enabled) {
             return;
         }
-        if (view && view.document && view.document.file) {
-            var style = getStyle(view.document.file.path);
+
+        if (view && view.document) {
+            var style = null;
+
+            if (view.document.file) {
+                style = getStyle(view.document.file.path);
+            } else if (view.document.displayPath) {
+                // New Files have no file object
+                style = getStyle(view.document.displayPath);
+            }
 
             if (style) {
                 var tab = view.parentNode._tab;

@@ -54,17 +54,17 @@ var gColorTabOverlay = {
     addListeners : function() {
         var self = this;
 
-        this.handle_view_opened_setup = function(event) {
+        this.handle_view_document_attached_setup = function(event) {
             self.onViewOpened(event);
         };
 
-        window.addEventListener('view_opened',
-                                this.handle_view_opened_setup, false);
+        window.addEventListener('view_document_attached',
+                                this.handle_view_document_attached_setup, false);
     },
 
     removeListeners : function() {
-        window.removeEventListener('view_opened',
-                                this.handle_view_opened_setup, false);
+        window.removeEventListener('view_document_attached',
+                                this.handle_view_document_attached_setup, false);
     },
 
     onViewOpened : function(event) {
