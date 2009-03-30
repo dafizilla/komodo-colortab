@@ -48,7 +48,7 @@ extensions.dafizilla.tabcolor.stringUtils = {};
                 strategyName = RegExp.$1;
                 pattern = RegExp.$2;
             }
-            var matchStrategy = PatternMatcher.strategies[strategyName];
+            var matchStrategy = extensions.dafizilla.tabcolor.stringUtils.PatternMatcher.strategies[strategyName];
             if (!matchStrategy) {
                 throw new SeleniumError("cannot find PatternMatcher.strategies." + strategyName);
             }
@@ -67,7 +67,7 @@ extensions.dafizilla.tabcolor.stringUtils = {};
      * A "static" convenience method for easy matching
      */
     this.PatternMatcher.matches = function(pattern, actual) {
-        return new PatternMatcher(pattern).matches(actual);
+        return new extensions.dafizilla.tabcolor.stringUtils.PatternMatcher(pattern).matches(actual);
     };
     
     this.PatternMatcher.strategies = {
@@ -104,7 +104,7 @@ extensions.dafizilla.tabcolor.stringUtils = {};
          * and so avoid running into this IE6 freeze.
          */
         globContains: function(globString) {
-            this.regexp = new RegExp(PatternMatcher.regexpFromGlobContains(globString));
+            this.regexp = new RegExp(extensions.dafizilla.tabcolor.stringUtils.PatternMatcher.regexpFromGlobContains(globString));
             this.matches = function(actual) {
                 return this.regexp.test(actual);
             };
@@ -116,9 +116,9 @@ extensions.dafizilla.tabcolor.stringUtils = {};
          */
         globCaseContains: function(globString, matchCase) {
             if (matchCase) {
-              this.regexp = new RegExp(PatternMatcher.regexpFromGlobContains(globString));
+              this.regexp = new RegExp(extensions.dafizilla.tabcolor.stringUtils.PatternMatcher.regexpFromGlobContains(globString));
             } else {
-              this.regexp = new RegExp(PatternMatcher.regexpFromGlobContains(globString), "i");
+              this.regexp = new RegExp(extensions.dafizilla.tabcolor.stringUtils.PatternMatcher.regexpFromGlobContains(globString), "i");
             }
             this.matches = function(actual) {
                 return this.regexp.test(actual);
@@ -129,7 +129,7 @@ extensions.dafizilla.tabcolor.stringUtils = {};
          * "glob" (aka "wildmat") patterns, e.g. "glob:one,two,*"
          */
         glob: function(globString) {
-            this.regexp = new RegExp(PatternMatcher.regexpFromGlob(globString));
+            this.regexp = new RegExp(extensions.dafizilla.tabcolor.stringUtils.PatternMatcher.regexpFromGlob(globString));
             this.matches = function(actual) {
                 return this.regexp.test(actual);
             };
@@ -146,10 +146,10 @@ extensions.dafizilla.tabcolor.stringUtils = {};
     };
     
     this.PatternMatcher.regexpFromGlobContains = function(globContains) {
-        return PatternMatcher.convertGlobMetaCharsToRegexpMetaChars(globContains);
+        return extensions.dafizilla.tabcolor.stringUtils.PatternMatcher.convertGlobMetaCharsToRegexpMetaChars(globContains);
     };
     
     this.PatternMatcher.regexpFromGlob = function(glob) {
-        return "^" + PatternMatcher.convertGlobMetaCharsToRegexpMetaChars(glob) + "$";
+        return "^" + extensions.dafizilla.tabcolor.stringUtils.PatternMatcher.convertGlobMetaCharsToRegexpMetaChars(glob) + "$";
     };
 }).apply(extensions.dafizilla.tabcolor.stringUtils);
