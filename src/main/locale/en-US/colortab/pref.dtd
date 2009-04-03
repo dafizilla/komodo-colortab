@@ -3,3 +3,6 @@
 <!ENTITY add.pattern.tooltiptext "Add Pattern">
 <!ENTITY delete.pattern.tooltiptext "Delete Pattern">
 <!ENTITY enable.colortab.label "Enable Color Tab">
+<!ENTITY up.pattern.tooltiptext "Move selected pattern up">
+<!ENTITY down.pattern.tooltiptext "Move selected pattern down">
+

@@ -2,8 +2,8 @@
 <?xml-stylesheet href="chrome://global/skin" type="text/css"?>
 <?xml-stylesheet href="chrome://komodo/skin/" type="text/css"?>
 <?xml-stylesheet href="chrome://komodo/skin/global/global.css" type="text/css"?>
+<?xml-stylesheet href="chrome://komodo/skin/bindings/buttons.css" type="text/css"?>
 
-<!--<?xml-stylesheet href="chrome://komodo/skin/bindings/colorpicker.css" type="text/css"?>-->
 <?xml-stylesheet href="chrome://colortab/skin/colortab.css" type="text/css"?>
 <?xml-stylesheet href="chrome://colortab/skin/predefined.css" type="text/css"?>
 
@@ -30,8 +30,10 @@
       <checkbox label="&enable.colortab.label;" id="enable-color-tab"/>
       <hbox>
         <spacer flex="1"/>
-        <button class="button-add" tooltiptext="&add.pattern.tooltiptext;" oncommand="onAddPattern()"/>
-        <button class="button-delete" tooltiptext="&delete.pattern.tooltiptext;" oncommand="onDeletePattern()"/>
+        <button class="button-add button-toolbar-a" tooltiptext="&add.pattern.tooltiptext;" oncommand="onAddPattern()"/>
+        <button class="button-delete button-toolbar-a" tooltiptext="&delete.pattern.tooltiptext;" oncommand="onDeletePattern()"/>
+        <button class="button-up button-toolbar-a" tooltiptext="&up.pattern.tooltiptext;" oncommand="movePattern(true)"/>
+        <button class="button-down button-toolbar-a" tooltiptext="&down.pattern.tooltiptext;" oncommand="movePattern(false)"/>
       </hbox>
   
       <listbox id="pattern-list" ondblclick="onEditPattern()"/>

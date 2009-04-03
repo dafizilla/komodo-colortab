@@ -175,4 +175,14 @@ extensions.dafizilla.tabcolor.commonUtils = {};
             .createInstance(Components.interfaces.nsIJSON);
         return { stringify : json.encode, parse : json.decode};
     }
+    
+    this.swap = function(arr, idx1, idx2) {
+        if ((idx1 == idx2) || (idx1 < 0) || (idx2 < 0)) {
+            return;
+        }
+        var temp = arr[idx1];
+
+        arr[idx1] = arr[idx2];
+        arr[idx2] = temp;
+    }
 }).apply(extensions.dafizilla.tabcolor.commonUtils);

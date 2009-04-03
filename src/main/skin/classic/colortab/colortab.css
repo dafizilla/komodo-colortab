@@ -7,3 +7,13 @@
   min-width: 0px;
   list-style-image: url("chrome://colortab/skin/images/delete.png");
 }
+
+.button-up {
+  min-width: 0px;
+  list-style-image: url("chrome://colortab/skin/images/up.png");
+}
+
+.button-down {
+  min-width: 0px;
+  list-style-image: url("chrome://colortab/skin/images/down.png");
+}

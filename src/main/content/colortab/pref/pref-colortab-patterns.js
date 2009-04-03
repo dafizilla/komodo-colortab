@@ -62,7 +62,6 @@ function OnPreferencePageLoading(prefset) {
 
         var listitem = document.createElement("listitem");
         listitem.setAttribute("label", pattern.patterns);
-        listitem.setAttribute("value", pattern.patterns);
         listitem.setAttribute("style", pattern.cssStyle);
         listitem.setAttribute("class", "pattern-list");
         widget.patternList.appendChild(listitem);
@@ -89,7 +88,6 @@ function onAddPattern() {
     if (info.isOk) {
         var listitem = document.createElement("listitem");
         listitem.setAttribute("label", info.patternInfo.patterns);
-        listitem.setAttribute("value", info.patternInfo.patterns);
         listitem.setAttribute("style", info.patternInfo.cssStyle);
         
         patternList.push(info.patternInfo);
@@ -108,7 +106,44 @@ function onEditPattern() {
     if (info.isOk) {
         var listitem = widget.patternList.selectedItem; 
         listitem.setAttribute("label", info.patternInfo.patterns);
-        listitem.setAttribute("value", info.patternInfo.patterns);
         listitem.setAttribute("style", info.patternInfo.cssStyle);
     }
+}
+
+function movePattern(moveUp) {
+    var fromIdx = widget.patternList.selectedIndex;
+
+    if (fromIdx < 0) {
+        return;
+    }
+
+    var offset;
+
+    if (moveUp) {
+        if (fromIdx <= 0) {
+            return;
+        }
+        offset = -1;
+    } else {
+        if (fromIdx >= patternList.length - 1) {
+            return;
+        }
+        offset = +1;
+    }
+
+    var toIdx = fromIdx + offset;
+
+    var fromEl = widget.patternList.getItemAtIndex(fromIdx);
+    var toEl = widget.patternList.getItemAtIndex(toIdx);
+
+    fromEl.setAttribute("label", patternList[toIdx].patterns);
+    fromEl.setAttribute("style", patternList[toIdx].cssStyle);
+
+    toEl.setAttribute("label", patternList[fromIdx].patterns);
+    toEl.setAttribute("style", patternList[fromIdx].cssStyle);
+
+    extensions.dafizilla.tabcolor.commonUtils.swap(patternList, fromIdx, toIdx);
+
+    widget.patternList.selectedIndex = toIdx;
+    widget.patternList.ensureIndexIsVisible(toIdx);
 }
