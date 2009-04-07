@@ -30,13 +30,27 @@
       <checkbox label="&enable.colortab.label;" id="enable-color-tab"/>
       <hbox>
         <spacer flex="1"/>
-        <button class="button-add button-toolbar-a" tooltiptext="&add.pattern.tooltiptext;" oncommand="onAddPattern()"/>
-        <button class="button-delete button-toolbar-a" tooltiptext="&delete.pattern.tooltiptext;" oncommand="onDeletePattern()"/>
-        <button class="button-up button-toolbar-a" tooltiptext="&up.pattern.tooltiptext;" oncommand="movePattern(true)"/>
-        <button class="button-down button-toolbar-a" tooltiptext="&down.pattern.tooltiptext;" oncommand="movePattern(false)"/>
+        <button id="add-pattern" class="button-add button-toolbar-a"
+                tooltiptext="&add.pattern.tooltiptext;"
+                oncommand="onAddPattern()"/>
+        <button id="delete-pattern" class="button-delete button-toolbar-a"
+                tooltiptext="&delete.pattern.tooltiptext;"
+                oncommand="onDeletePattern()" disabled="true"/>
+        <button id="edit-pattern" class="button-edit button-toolbar-a"
+                tooltiptext="&edit.pattern.tooltiptext;"
+                oncommand="onEditPattern()" disabled="true"/>
+        <button id="up-pattern" class="button-up button-toolbar-a"
+                tooltiptext="&up.pattern.tooltiptext;"
+                oncommand="movePattern(true)" disabled="true"/>
+        <button id="down-pattern" class="button-down button-toolbar-a"
+                tooltiptext="&down.pattern.tooltiptext;"
+                oncommand="movePattern(false)" disabled="true"/>
       </hbox>
   
-      <listbox id="pattern-list" ondblclick="onEditPattern()"/>
+      <richlistbox id="pattern-list" ondblclick="onEditPattern()"
+                onselect="onSelectPattern(event)"
+                style="min-height:200px; max-height: 200px;"/>
+
     </vbox>
   </groupbox>
 

@@ -60,10 +60,13 @@ function OnPreferencePageLoading(prefset) {
     for (var i in patternList) {
         var pattern = patternList[i];
 
-        var listitem = document.createElement("listitem");
-        listitem.setAttribute("label", pattern.patterns);
-        listitem.setAttribute("style", pattern.cssStyle);
-        listitem.setAttribute("class", "pattern-list");
+        var listitem = document.createElement("richlistitem");
+        var label = document.createElement("label");
+
+        label.setAttribute("value", pattern.patterns);
+        label.setAttribute("style", pattern.cssStyle);
+        label.setAttribute("flex", "1");
+        listitem.appendChild(label);
         widget.patternList.appendChild(listitem);
     }
 }
@@ -73,11 +76,18 @@ function colorTabOnLoad() {
 }
 
 function onDeletePattern() {
-    if (widget.patternList.selectedIndex < 0) {
+    var selIdx = widget.patternList.selectedIndex;
+    if (selIdx < 0) {
         return;
     }
-    patternList.splice(widget.patternList.selectedIndex, 1);
-    widget.patternList.removeItemAt(widget.patternList.selectedIndex);
+    patternList.splice(selIdx, 1);
+    widget.patternList.removeItemAt(selIdx);
+
+    if (patternList.length > 0) {
+        widget.patternList.selectedIndex = patternList.length == selIdx ? selIdx - 1 : selIdx;
+    } else {
+        widget.patternList.selectedIndex = -1;
+    }
 }
 
 function onAddPattern() {
@@ -86,11 +96,15 @@ function onAddPattern() {
                       '_blank',
                       'chrome,modal,titlebar,resizable,centerscreen', info);
     if (info.isOk) {
-        var listitem = document.createElement("listitem");
-        listitem.setAttribute("label", info.patternInfo.patterns);
-        listitem.setAttribute("style", info.patternInfo.cssStyle);
-        
         patternList.push(info.patternInfo);
+
+        var listitem = document.createElement("richlistitem");
+        var label = document.createElement("label");
+
+        label.setAttribute("value", info.patternInfo.patterns);
+        label.setAttribute("style", info.patternInfo.cssStyle);
+        label.setAttribute("flex", "1");
+        listitem.appendChild(label);
         widget.patternList.appendChild(listitem);
     }
 }
@@ -104,8 +118,8 @@ function onEditPattern() {
                       '_blank',
                       'chrome,modal,titlebar,resizable,centerscreen', info);
     if (info.isOk) {
-        var listitem = widget.patternList.selectedItem; 
-        listitem.setAttribute("label", info.patternInfo.patterns);
+        var listitem = widget.patternList.selectedItem.firstChild; 
+        listitem.setAttribute("value", info.patternInfo.patterns);
         listitem.setAttribute("style", info.patternInfo.cssStyle);
     }
 }
@@ -133,17 +147,32 @@ function movePattern(moveUp) {
 
     var toIdx = fromIdx + offset;
 
-    var fromEl = widget.patternList.getItemAtIndex(fromIdx);
-    var toEl = widget.patternList.getItemAtIndex(toIdx);
+    var fromEl = widget.patternList.getItemAtIndex(fromIdx).firstChild;
+    var toEl = widget.patternList.getItemAtIndex(toIdx).firstChild;
 
-    fromEl.setAttribute("label", patternList[toIdx].patterns);
+    fromEl.setAttribute("value", patternList[toIdx].patterns);
     fromEl.setAttribute("style", patternList[toIdx].cssStyle);
 
-    toEl.setAttribute("label", patternList[fromIdx].patterns);
+    toEl.setAttribute("value", patternList[fromIdx].patterns);
     toEl.setAttribute("style", patternList[fromIdx].cssStyle);
 
     extensions.dafizilla.tabcolor.commonUtils.swap(patternList, fromIdx, toIdx);
 
     widget.patternList.selectedIndex = toIdx;
     widget.patternList.ensureIndexIsVisible(toIdx);
+}
+
+function onSelectPattern(event) {
+    var selIdx = widget.patternList.selectedIndex;
+
+    var addButton = document.getElementById("add-pattern");
+    var editButton = document.getElementById("edit-pattern");
+    var deleteButton = document.getElementById("delete-pattern");
+    var upButton = document.getElementById("up-pattern");
+    var downButton = document.getElementById("down-pattern");
+
+    upButton.disabled = selIdx <= 0;
+    downButton.disabled = selIdx < 0 || selIdx >= patternList.length - 1;
+    deleteButton.disabled = selIdx < 0;
+    editButton.disabled = selIdx < 0;
 }

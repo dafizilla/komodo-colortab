@@ -22,8 +22,3 @@
 .predefined-menuitem:hover {
     border: solid 1px #000;
 }
-
-.pattern-list {
-    -moz-appearance:none !important; 
-    border: solid 1px #000;
-}
