@@ -22,3 +22,7 @@
 .predefined-menuitem:hover {
     border: solid 1px #000;
 }
+
+.support-user-color {
+    -moz-appearance:none !important; 
+}

@@ -59,6 +59,7 @@ var gPatternColorDialog = {
         this.widgets.backPicker = document.getElementById("back-picker");
         this.widgets.filePattern = document.getElementById("file-pattern");
         this.widgets.cssBlock = document.getElementById("css-block");
+        this.widgets.langList = document.getElementById("langList");
 
         this.dialog = document.documentElement;
 
@@ -76,6 +77,14 @@ var gPatternColorDialog = {
         if (this.info.patternInfo.patterns) {
             this.widgets.filePattern.value = this.info.patternInfo.patterns;
         }
+
+        // Add an empty menuitem on langList so user must choose
+        // an item to append the extensions
+        var menuitem = document.createElement("menuitem");
+        menuitem.setAttribute("label", "");
+        var list = document.getAnonymousNodes(this.widgets.langList)[0].firstChild;
+        list.insertBefore(menuitem, list.firstChild);
+        list.parentNode.selectedIndex = 0;
 
         this.updateAccept();
     },
@@ -107,7 +116,7 @@ var gPatternColorDialog = {
             .getCssProperties(this.widgets.cssBlock.value);
         properties["color"] = this.widgets.forePicker.color;
         properties["background-color"] = this.widgets.backPicker.color;
-        
+
         // add border if not present
         var reBorder = /border.*/;
         var addBorder = true;
@@ -137,7 +146,37 @@ var gPatternColorDialog = {
         this.info.patternInfo.cssStyle = this.widgets.cssBlock.value;
         this.info.patternInfo.patterns = this.widgets.filePattern.value;
         this.info.isOk = true;
-        
+
         return true;
+    },
+
+    onAppendExtensions : function(language) {
+        var langService = Components
+            .classes["@activestate.com/koLanguageRegistryService;1"]
+            .getService(Components.interfaces.koILanguageRegistryService);
+
+        var patterns = {};
+        var count = {};
+        langService.patternsFromLanguageName(language, patterns, count);
+        patterns = patterns.value;
+        count = count.value;
+
+        if (count == 0) {
+            return;
+        }
+        var currPattern = this.widgets.filePattern.value;
+        var extArr = [];
+
+        if (currPattern != "") {
+            extArr.push(currPattern.replace(/;*$/, ""));
+        }
+
+        for (var i = 0; i < count; i++) {
+            extArr.push(patterns[i]);
+        }
+
+        this.widgets.filePattern.value = extArr.join(";");
+        this.updateAccept();
+        this.widgets.filePattern.focus();
     }
 }

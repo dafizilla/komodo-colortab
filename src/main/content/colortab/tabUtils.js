@@ -70,23 +70,23 @@ extensions.dafizilla.tabcolor.tabUtils = {};
                 }
             }
         }
-        
+
         return cssStyle;
     }
-    
+
     this.cssTextFromProperties = function(properties) {
         var arr = [];
-        
+
         for (i in properties) {
             arr.push(i + ": " + properties[i]);
         }
         return arr.join("; ") + ";";
     }
-    
+
     function getStyle(str) {
         for (var i in this._cachedInfoList) {
             var info = this._cachedInfoList[i];
-            
+
             for (var p in info.patternsRegExpr) {
                 var re = info.patternsRegExpr[p];
                 if (re.matches(str)) {
@@ -96,13 +96,13 @@ extensions.dafizilla.tabcolor.tabUtils = {};
         }
         return null;
     }
-    
+
     function buildStyle(styleInfo) {
         if (styleInfo.cssStyle == "") {
             return null;
         }
         var cssStyle = styleInfo.cssStyle;
-        
+
         return "-moz-appearance:none !important; " + cssStyle;
     }
 
@@ -110,14 +110,14 @@ extensions.dafizilla.tabcolor.tabUtils = {};
         var file = commonUtils.getProfileDir();
         file.append("dafizilla");
         file.append("colortab.json");
-        
+
         return file;
     }
 
     this.loadStylesInfo = function() {
         var str;
         var file = this.getConfigFile();
-        
+
         if (file.exists()) {
             str = commonUtils.loadTextFile(file.path);
         } else {
@@ -141,7 +141,7 @@ extensions.dafizilla.tabcolor.tabUtils = {};
         var str = commonUtils.getJSON().stringify(stylesInfo);
         commonUtils.saveTextFile(file.path, str);
     }
-    
+
     /**
      * create the reg expr array property and the final css to use
      */
@@ -167,7 +167,7 @@ extensions.dafizilla.tabcolor.tabUtils = {};
             }
         }
     }
-    
+
     this.prefChanged = function() {
         this.init();
         var views = ko.views.manager.topView.getDocumentViews(true);
@@ -201,7 +201,7 @@ extensions.dafizilla.tabcolor.tabUtils = {};
         this.loadStylesInfo();
         createCachedInfo(_stylesInfo.patternList);
     }
-    
+
     this.setViewTabStyle = function(view) {
         if (!_stylesInfo.enabled) {
             return;

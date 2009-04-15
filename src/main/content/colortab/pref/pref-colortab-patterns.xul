@@ -28,6 +28,8 @@
 
     <vbox>
       <checkbox label="&enable.colortab.label;" id="enable-color-tab"/>
+
+
       <hbox>
         <spacer flex="1"/>
         <button id="add-pattern" class="button-add button-toolbar-a"
@@ -48,9 +50,8 @@
       </hbox>
   
       <richlistbox id="pattern-list" ondblclick="onEditPattern()"
-                onselect="onSelectPattern(event)"
+                onselect="onSelectPattern()"
                 style="min-height:200px; max-height: 200px;"/>
-
     </vbox>
   </groupbox>
 

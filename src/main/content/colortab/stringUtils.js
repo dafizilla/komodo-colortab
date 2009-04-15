@@ -40,7 +40,7 @@ extensions.dafizilla.tabcolor.stringUtils = {};
         this.selectStrategy(pattern);
     };
     this.PatternMatcher.prototype = {
-    
+
         selectStrategy: function(pattern) {
             this.pattern = pattern;
             var strategyName = 'glob'; // by default
@@ -55,23 +55,22 @@ extensions.dafizilla.tabcolor.stringUtils = {};
             this.strategy = matchStrategy;
             this.matcher = new matchStrategy(pattern);
         },
-    
+
         matches: function(actual) {
             return this.matcher.matches(actual + '');
             // Note: appending an empty string avoids a Konqueror bug
         }
-    
     };
-    
+
     /**
      * A "static" convenience method for easy matching
      */
     this.PatternMatcher.matches = function(pattern, actual) {
         return new extensions.dafizilla.tabcolor.stringUtils.PatternMatcher(pattern).matches(actual);
     };
-    
+
     this.PatternMatcher.strategies = {
-    
+
         /**
          * Exact matching, e.g. "exact:***"
          */
@@ -81,7 +80,7 @@ extensions.dafizilla.tabcolor.stringUtils = {};
                 return actual == this.expected;
             };
         },
-    
+
         /**
          * Match by regular expression, e.g. "regexp:^[0-9]+$"
          */
@@ -91,16 +90,16 @@ extensions.dafizilla.tabcolor.stringUtils = {};
                 return this.regexp.test(actual);
             };
         },
-    
+
         /**
-         * "globContains" (aka "wildmat") patterns, e.g. "glob:one,two,*", 
+         * "globContains" (aka "wildmat") patterns, e.g. "glob:one,two,*",
          * but don't require a perfect match; instead succeed if actual
          * contains something that matches globString.
-         * Making this distinction is motivated by a bug in IE6 which 
-         * leads to the browser hanging if we implement *TextPresent tests 
-         * by just matching against a regular expression beginning and 
-         * ending with ".*".  The globcontains strategy allows us to satisfy 
-         * the functional needs of the *TextPresent ops more efficiently 
+         * Making this distinction is motivated by a bug in IE6 which
+         * leads to the browser hanging if we implement *TextPresent tests
+         * by just matching against a regular expression beginning and
+         * ending with ".*".  The globcontains strategy allows us to satisfy
+         * the functional needs of the *TextPresent ops more efficiently
          * and so avoid running into this IE6 freeze.
          */
         globContains: function(globString) {
@@ -109,7 +108,7 @@ extensions.dafizilla.tabcolor.stringUtils = {};
                 return this.regexp.test(actual);
             };
         },
-        
+
         /**
          * Identical to globContains but allows case insensitive search
          * 29/Mar/2008 Added by davide ficano <davide.ficano@gmail.com>
@@ -124,7 +123,7 @@ extensions.dafizilla.tabcolor.stringUtils = {};
                 return this.regexp.test(actual);
             };
         },
-    
+
         /**
          * "glob" (aka "wildmat") patterns, e.g. "glob:one,two,*"
          */
@@ -134,9 +133,9 @@ extensions.dafizilla.tabcolor.stringUtils = {};
                 return this.regexp.test(actual);
             };
         }
-        
+
     };
-    
+
     this.PatternMatcher.convertGlobMetaCharsToRegexpMetaChars = function(glob) {
         var re = glob;
         re = re.replace(/([.^$+(){}\[\]\\|])/g, "\\$1");
@@ -144,11 +143,11 @@ extensions.dafizilla.tabcolor.stringUtils = {};
         re = re.replace(/\*/g, "(.|[\r\n])*");
         return re;
     };
-    
+
     this.PatternMatcher.regexpFromGlobContains = function(globContains) {
         return extensions.dafizilla.tabcolor.stringUtils.PatternMatcher.convertGlobMetaCharsToRegexpMetaChars(globContains);
     };
-    
+
     this.PatternMatcher.regexpFromGlob = function(glob) {
         return "^" + extensions.dafizilla.tabcolor.stringUtils.PatternMatcher.convertGlobMetaCharsToRegexpMetaChars(glob) + "$";
     };

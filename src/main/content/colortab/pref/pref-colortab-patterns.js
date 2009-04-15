@@ -53,16 +53,15 @@ function OnPreferencePageInitalize(prefset) {
 
 function OnPreferencePageLoading(prefset) {
     stylesInfo = extensions.dafizilla.tabcolor.tabUtils.loadStylesInfo();
-    
+
     widget.enableColorTab.checked = stylesInfo.enabled;
-    
+
     patternList = stylesInfo.patternList;
     for (var i in patternList) {
         var pattern = patternList[i];
 
         var listitem = document.createElement("richlistitem");
         var label = document.createElement("label");
-
         label.setAttribute("value", pattern.patterns);
         label.setAttribute("style", pattern.cssStyle);
         label.setAttribute("flex", "1");
@@ -96,11 +95,10 @@ function onAddPattern() {
                       '_blank',
                       'chrome,modal,titlebar,resizable,centerscreen', info);
     if (info.isOk) {
-        patternList.push(info.patternInfo);
 
+        patternList.push(info.patternInfo);
         var listitem = document.createElement("richlistitem");
         var label = document.createElement("label");
-
         label.setAttribute("value", info.patternInfo.patterns);
         label.setAttribute("style", info.patternInfo.cssStyle);
         label.setAttribute("flex", "1");
@@ -162,7 +160,7 @@ function movePattern(moveUp) {
     widget.patternList.ensureIndexIsVisible(toIdx);
 }
 
-function onSelectPattern(event) {
+function onSelectPattern() {
     var selIdx = widget.patternList.selectedIndex;
 
     var addButton = document.getElementById("add-pattern");

@@ -4,6 +4,7 @@
 <?xml-stylesheet href="chrome://colortab/skin/pref.css" type="text/css"?>
 
 <?xml-stylesheet href="chrome://komodo/skin/bindings/colorpicker.css" type="text/css"?>
+<?xml-stylesheet href="chrome://komodo/skin/bindings/widgets.css" type="text/css"?>
 <?xml-stylesheet href="chrome://colortab/skin/colortab.css" type="text/css"?>
 <?xml-stylesheet href="chrome://colortab/skin/predefined.css" type="text/css"?>
 
@@ -48,22 +49,22 @@
 
         <button type="menu" label="&predefined.color.schemes.label;" id="color-scheme-list">
           <menupopup id="color-scheme-menupopup">
-            <menuitem label="&sample-text;" id="predefined01" class="predefined01 predefined-menuitem" oncommand="gPatternColorDialog.updateSelectedColor(this)"/>
-            <menuitem label="&sample-text;" id="predefined02" class="predefined02 predefined-menuitem" oncommand="gPatternColorDialog.updateSelectedColor(this)"/>
-            <menuitem label="&sample-text;" id="predefined03" class="predefined03 predefined-menuitem" oncommand="gPatternColorDialog.updateSelectedColor(this)"/>
-            <menuitem label="&sample-text;" id="predefined04" class="predefined04 predefined-menuitem" oncommand="gPatternColorDialog.updateSelectedColor(this)"/>
-            <menuitem label="&sample-text;" id="predefined05" class="predefined05 predefined-menuitem" oncommand="gPatternColorDialog.updateSelectedColor(this)"/>
-            <menuitem label="&sample-text;" id="predefined06" class="predefined06 predefined-menuitem" oncommand="gPatternColorDialog.updateSelectedColor(this)"/>
-            <menuitem label="&sample-text;" id="predefined07" class="predefined07 predefined-menuitem" oncommand="gPatternColorDialog.updateSelectedColor(this)"/>
-            <menuitem label="&sample-text;" id="predefined08" class="predefined08 predefined-menuitem" oncommand="gPatternColorDialog.updateSelectedColor(this)"/>
-            <menuitem label="&sample-text;" id="predefined09" class="predefined09 predefined-menuitem" oncommand="gPatternColorDialog.updateSelectedColor(this)"/>
-            <menuitem label="&sample-text;" id="predefined10" class="predefined10 predefined-menuitem" oncommand="gPatternColorDialog.updateSelectedColor(this)"/>
-            <menuitem label="&sample-text;" id="predefined11" class="predefined11 predefined-menuitem" oncommand="gPatternColorDialog.updateSelectedColor(this)"/>
-            <menuitem label="&sample-text;" id="predefined12" class="predefined12 predefined-menuitem" oncommand="gPatternColorDialog.updateSelectedColor(this)"/>
-            <menuitem label="&sample-text;" id="predefined13" class="predefined13 predefined-menuitem" oncommand="gPatternColorDialog.updateSelectedColor(this)"/>
-            <menuitem label="&sample-text;" id="predefined14" class="predefined14 predefined-menuitem" oncommand="gPatternColorDialog.updateSelectedColor(this)"/>
-            <menuitem label="&sample-text;" id="predefined15" class="predefined15 predefined-menuitem" oncommand="gPatternColorDialog.updateSelectedColor(this)"/>
-            <menuitem label="&sample-text;" id="predefined16" class="predefined16 predefined-menuitem" oncommand="gPatternColorDialog.updateSelectedColor(this)"/>
+            <menuitem label="&sample.text;" id="predefined01" class="predefined01 predefined-menuitem" oncommand="gPatternColorDialog.updateSelectedColor(this)"/>
+            <menuitem label="&sample.text;" id="predefined02" class="predefined02 predefined-menuitem" oncommand="gPatternColorDialog.updateSelectedColor(this)"/>
+            <menuitem label="&sample.text;" id="predefined03" class="predefined03 predefined-menuitem" oncommand="gPatternColorDialog.updateSelectedColor(this)"/>
+            <menuitem label="&sample.text;" id="predefined04" class="predefined04 predefined-menuitem" oncommand="gPatternColorDialog.updateSelectedColor(this)"/>
+            <menuitem label="&sample.text;" id="predefined05" class="predefined05 predefined-menuitem" oncommand="gPatternColorDialog.updateSelectedColor(this)"/>
+            <menuitem label="&sample.text;" id="predefined06" class="predefined06 predefined-menuitem" oncommand="gPatternColorDialog.updateSelectedColor(this)"/>
+            <menuitem label="&sample.text;" id="predefined07" class="predefined07 predefined-menuitem" oncommand="gPatternColorDialog.updateSelectedColor(this)"/>
+            <menuitem label="&sample.text;" id="predefined08" class="predefined08 predefined-menuitem" oncommand="gPatternColorDialog.updateSelectedColor(this)"/>
+            <menuitem label="&sample.text;" id="predefined09" class="predefined09 predefined-menuitem" oncommand="gPatternColorDialog.updateSelectedColor(this)"/>
+            <menuitem label="&sample.text;" id="predefined10" class="predefined10 predefined-menuitem" oncommand="gPatternColorDialog.updateSelectedColor(this)"/>
+            <menuitem label="&sample.text;" id="predefined11" class="predefined11 predefined-menuitem" oncommand="gPatternColorDialog.updateSelectedColor(this)"/>
+            <menuitem label="&sample.text;" id="predefined12" class="predefined12 predefined-menuitem" oncommand="gPatternColorDialog.updateSelectedColor(this)"/>
+            <menuitem label="&sample.text;" id="predefined13" class="predefined13 predefined-menuitem" oncommand="gPatternColorDialog.updateSelectedColor(this)"/>
+            <menuitem label="&sample.text;" id="predefined14" class="predefined14 predefined-menuitem" oncommand="gPatternColorDialog.updateSelectedColor(this)"/>
+            <menuitem label="&sample.text;" id="predefined15" class="predefined15 predefined-menuitem" oncommand="gPatternColorDialog.updateSelectedColor(this)"/>
+            <menuitem label="&sample.text;" id="predefined16" class="predefined16 predefined-menuitem" oncommand="gPatternColorDialog.updateSelectedColor(this)"/>
           </menupopup>
         </button>
     </hbox>
@@ -79,8 +80,13 @@
 
   <groupbox orient="vertical">
     <caption label="&file.pattern.caption;"/>
-      
+
       <vbox>
+        <hbox align="center">
+          <label value="&languages.label;"/>
+          <langlist id="langList" oncommand="gPatternColorDialog.onAppendExtensions(this.selection)"/>
+        </hbox>
+
         <label value="&file.pattern.label;"/>
         <hbox align="center">
           <textbox id="file-pattern" flex="1" oninput="gPatternColorDialog.onInputFilePattern()"/>

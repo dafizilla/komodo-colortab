@@ -55,38 +55,38 @@ extensions.dafizilla.tabcolor.commonUtils = {};
 
     this.removeMenuItems = function(menu) {
         var children = menu.childNodes;
-    
+
         for (var i = children.length - 1; i >= 0; i--) {
             menu.removeChild(children[i]);
         }
     }
-    
+
     this.getLocalizedMessage = function(msg) {
         return locale.GetStringFromName(msg);
     }
-    
+
     this.getFormattedMessage = function(msg, ar) {
         return locale.formatStringFromName(msg, ar, ar.length);
     }
-    
+
     this.getObserverService = function () {
         return Components.classes["@mozilla.org/observer-service;1"]
             .getService(Components.interfaces.nsIObserverService);
     }
-    
+
     this.getProfileDir = function() {
         return this.getPrefDir("PrefD");
     }
-    
+
     this.getPrefDir = function(dir) {
         return Components.classes["@mozilla.org/file/directory_service;1"]
             .getService(Components.interfaces.nsIProperties)
             .get(dir, Components.interfaces.nsILocalFile);
     }
-    
+
     this.makeLocalFile = function(path, arrayAppendPaths) {
         var file;
-    
+
         try {
             file = path.QueryInterface(Components.interfaces.nsILocalFile);
         } catch (err) {
@@ -94,7 +94,7 @@ extensions.dafizilla.tabcolor.commonUtils = {};
                    .createInstance(Components.interfaces.nsILocalFile);
             file.initWithPath(path);
         }
-    
+
         if (arrayAppendPaths != null
             && arrayAppendPaths != undefined
             && arrayAppendPaths.length) {
@@ -104,14 +104,14 @@ extensions.dafizilla.tabcolor.commonUtils = {};
         }
         return file;
     }
-    
+
     this.read = function(file) {
         var str = "";
         var fiStream = Components.classes["@mozilla.org/network/file-input-stream;1"]
             .createInstance(Components.interfaces.nsIFileInputStream);
         var siStream = Components.classes["@mozilla.org/scriptableinputstream;1"]
             .createInstance(Components.interfaces.nsIScriptableInputStream);
-    
+
         fiStream.init(file, 1, 0, false);
         siStream.init(fiStream);
         str += siStream.read(-1);
@@ -119,26 +119,26 @@ extensions.dafizilla.tabcolor.commonUtils = {};
         fiStream.close();
         return str;
     }
-    
+
     this.loadTextFile = function(fileName) {
         var file = this.makeLocalFile(fileName);
-    
+
         if (!file.exists()) {
             return null;
         }
-    
+
         var fileContent = this.read(file);
-    
+
         return fileContent;
     }
-    
+
     this.saveTextFile = function(fileName, fileContent, permissions) {
         var os = this.makeOutputStream(fileName, false, permissions);
         os.write(fileContent, fileContent.length);
         os.flush();
         os.close();
     }
-    
+
     this.makeOutputStream = function(fileNameOrLocalFile, append, permissions) {
         permissions = typeof(permissions) == "undefined" ? 0600 : permissions;
         var os = Components.classes["@mozilla.org/network/file-output-stream;1"]
@@ -148,20 +148,20 @@ extensions.dafizilla.tabcolor.commonUtils = {};
             flags = 0x02 | 0x10; // wronly | append
         }
         var file = this.makeLocalFile(fileNameOrLocalFile);
-    
+
         os.init(file, flags, permissions, 0);
-    
+
         return os;
     }
-    
+
     this.readHttpReq = function(urlName) {
         var httpReq = new XMLHttpRequest();
         httpReq.open("GET", urlName, false);
         httpReq.send(null);
-    
+
         return httpReq;
     }
-    
+
     this.log = function(msg) {
         ko.logging.getLogger("extensions.colortab").warn(msg);
     }
@@ -175,7 +175,7 @@ extensions.dafizilla.tabcolor.commonUtils = {};
             .createInstance(Components.interfaces.nsIJSON);
         return { stringify : json.encode, parse : json.decode};
     }
-    
+
     this.swap = function(arr, idx1, idx2) {
         if ((idx1 == idx2) || (idx1 < 0) || (idx2 < 0)) {
             return;
