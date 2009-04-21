@@ -49,9 +49,9 @@ if (typeof(extensions.dafizilla.tabcolor) == 'undefined') {
 extensions.dafizilla.tabcolor.tabUtils = {};
 
 (function() {
-    _stylesInfo = null;
-    commonUtils = extensions.dafizilla.tabcolor.commonUtils;
-    stringUtils = extensions.dafizilla.tabcolor.stringUtils;
+    var _stylesInfo = null;
+    var commonUtils = extensions.dafizilla.tabcolor.commonUtils;
+    var stringUtils = extensions.dafizilla.tabcolor.stringUtils;
 
     // Contains cached info, the object prototype is
     // .cssStyle
