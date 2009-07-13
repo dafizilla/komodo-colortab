@@ -4,7 +4,7 @@
 }
 
 .button-add[disabled="true"] {
-  -moz-opacity: 0.5;
+  opacity: 0.5;
 }
 
 .button-delete {
@@ -13,7 +13,7 @@
 }
 
 .button-delete[disabled="true"] {
-  -moz-opacity: 0.5;
+  opacity: 0.5;
 }
 
 .button-up {
@@ -22,7 +22,7 @@
 }
 
 .button-up[disabled="true"] {
-  -moz-opacity: 0.5;
+  opacity: 0.5;
 }
 
 .button-down {
@@ -31,7 +31,7 @@
 }
 
 .button-down[disabled="true"] {
-  -moz-opacity: 0.5;
+  opacity: 0.5;
 }
 
 .button-edit {
@@ -40,5 +40,5 @@
 }
 
 .button-edit[disabled="true"] {
-  -moz-opacity: 0.5;
+  opacity: 0.5;
 }
