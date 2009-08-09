@@ -77,7 +77,7 @@ extensions.dafizilla.tabcolor.tabUtils = {};
     this.cssTextFromProperties = function(properties) {
         var arr = [];
 
-        for (i in properties) {
+        for (var i in properties) {
             arr.push(i + ": " + properties[i]);
         }
         return arr.join("; ") + ";";
