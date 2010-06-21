@@ -160,7 +160,7 @@ extensions.dafizilla.tabcolor.tabUtils = {};
                 for (var p in patterns) {
                     if (patterns[p] != "") {
                         cachedInfo.patternsRegExpr.push(new stringUtils.PatternMatcher
-                            .strategies.globCaseContains(patterns[p], false));
+                            .strategies.globCase(patterns[p], false));
                     }
                 }
                 this._cachedInfoList.push(cachedInfo);

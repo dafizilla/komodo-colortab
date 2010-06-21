@@ -132,8 +132,18 @@ extensions.dafizilla.tabcolor.stringUtils = {};
             this.matches = function(actual) {
                 return this.regexp.test(actual);
             };
-        }
+        },
 
+        globCase: function(globString, matchCase) {
+            if (matchCase) {
+              this.regexp = new RegExp(extensions.dafizilla.tabcolor.stringUtils.PatternMatcher.regexpFromGlob(globString));
+            } else {
+              this.regexp = new RegExp(extensions.dafizilla.tabcolor.stringUtils.PatternMatcher.regexpFromGlob(globString), "i");
+            }
+            this.matches = function(actual) {
+                return this.regexp.test(actual);
+            };
+        }
     };
 
     this.PatternMatcher.convertGlobMetaCharsToRegexpMetaChars = function(glob) {
