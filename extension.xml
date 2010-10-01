@@ -1,9 +1,9 @@
 <!DOCTYPE extension [
-<!ENTITY extension.version "1.0.2">
+<!ENTITY extension.version "1.0.3">
 ]>
 
 <extension name="colortab">
-    <title-name>Dafizilla ColorTab</title-name>
+    <title-name>ColorTab</title-name>
     <uuid>colortab@dafizilla.sourceforge.net</uuid>
     <version>&extension.version;</version>
     <description>Color tab view based on file type</description>
@@ -58,14 +58,14 @@
             <description>Komodo IDE</description>
             <id>{36E66FA0-F259-11D9-850E-000D935D3368}</id>
             <minVersion>5.0</minVersion>
-            <maxVersion>5.*</maxVersion>
+            <maxVersion>6.*</maxVersion>
         </application>
         
         <application>
             <description>Komodo Edit</description>
             <id>{b1042fb5-9e9c-11db-b107-000d935d3368}</id>
             <minVersion>5.0</minVersion>
-            <maxVersion>5.*</maxVersion>
+            <maxVersion>6.*</maxVersion>
         </application>
     </compatibility>
 
